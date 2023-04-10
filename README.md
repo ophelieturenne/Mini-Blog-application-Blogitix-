@@ -1,6 +1,6 @@
 <body>
   <h1>Basic Blog Application</h1>
-  ![Design preview for the mini blog project](./assets/blogitix_pic.JPG)
+  ![Design preview for the mini blog project](./assets/blogitix.JPG)
 
   <p>The Basic Blog Application is a simple blog website that allows users to create, view, edit, and delete blog posts. Users can also add categories to their posts and search for blog posts.</p>
   <h2>Technologies</h2>
