@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<h2>Welcome to our blog</h2>
+
+<div class="container">
+  <div class="row">
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 mt-3 left">
+      {% for post in post_list %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} | <small>{{ post.category }} Category</small></p>
+            <p class="card-text mt-4">{{post.content|slice:":200" }}</p>
+            {% if post.author == request.user %} 
+              <a href="{% url 'update_post' post.slug  %}" class="btn btn-success">Edit</a>
+              <a href="{% url 'delete_post' post.slug  %}" class="btn btn-danger">Delete</a>
+            {% endif %}
+            <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">View</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="col-md-4 float-right ">
+      <div class="card my-4">
+        <h5 class="card-header">Create your post here !</h5>
+        <div class="card-body">
+          <a href="{% url 'add_post' %}" class="btn btn-dark">Add post</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+{% if post.author == request.user %}
+  <form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    {{ form }}
+    <input type="submit" value="Confirm">
+  </form>
+{% else %}
+  <div style="display: flex; justify-content: center; align-items: center; height: 90vh;">
+    <div style="background-color: #F44336; color: #FFF; padding: 20px; text-align: center; border-radius: 50px;">
+      <p class="m-0 fw-bold">You are not allowed to delete this post because you're not the author of this post.</p>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

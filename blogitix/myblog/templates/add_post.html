@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+  <h2>Creating a new post</h2>
+
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary">Post</button>
+    </form>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+{% if post.author == request.user %}
+  <h2>updating a new post</h2>
+
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+{% else %}
+  <div style="display: flex; justify-content: center; align-items: center; height: 90vh;">
+    <div style="background-color: #F44336; color: #FFF; padding: 20px; text-align: center; border-radius: 50px;">
+      <p class="m-0 fw-bold">You are not allowed to update this post because you're not the author of this post.</p>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<h2>{{ object.title }}</h2>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 card mb-4  mt-3 left top">
+        <div class="card-body">
+          <p class=" text-muted mb-0">{{ post.author }} | {{ post.created_on }}</p>
+          <small>{{ post.category }} Category</small>
+          <p class="card-text mt-4">{{ post.content | safe }}</p>
+          {% if post.author == request.user %} <!-- This will check if the post author is the same as the logged in user. -->
+            <a href="{% url 'update_post' post.slug  %}" class="btn btn-success">Edit</a>
+            <a href="{% url 'delete_post' post.slug  %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-dark" style="margin-left: -10px;">Back</a>
+  </div>
+
+{% endblock %}
